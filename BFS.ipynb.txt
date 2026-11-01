@@ -1,0 +1,85 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyNRJ+qJUmPfHnS8eEnaa0N3",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/Abhijith2005binu/AI-ML/blob/main/BFS.ipynb\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from collections import deque\n",
+        "\n",
+        "def bfs(graph, start_node):\n",
+        "    visited = set()\n",
+        "    queue = deque([start_node])\n",
+        "    bfs_order = []\n",
+        "\n",
+        "    visited.add(start_node)\n",
+        "\n",
+        "    while queue:\n",
+        "        current_node = queue.popleft()\n",
+        "        bfs_order.append(current_node)\n",
+        "\n",
+        "        for neighbor in graph.get(current_node, []):\n",
+        "            if neighbor not in visited:\n",
+        "                visited.add(neighbor)\n",
+        "                queue.append(neighbor)\n",
+        "\n",
+        "    return bfs_order\n",
+        "\n",
+        "graph = {\n",
+        "    'A': ['B', 'C'],\n",
+        "    'B': ['F', 'E'],\n",
+        "    'C': ['D'],\n",
+        "    'D': [],\n",
+        "    'E': ['F'],\n",
+        "    'F': []\n",
+        "}\n",
+        "\n",
+        "start_node = 'A'\n",
+        "bfs_result = bfs(graph, start_node)\n",
+        "print(f\"BFS starting from {start_node}: {bfs_result}\")\n",
+        "\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "Cw-YkZbH2f58",
+        "outputId": "390940d4-35de-46f4-bd93-17e403ed53f4"
+      },
+      "execution_count": 3,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "BFS starting from A: ['A', 'B', 'C', 'F', 'E', 'D']\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
